@@ -3,8 +3,10 @@ import { IsOptional, IsString, Length, IsDateString } from 'class-validator';
 export class UpdateDto {
   constructor(body: any) {
     this.id = body.id;
-    this.userName = body.userName;
     this.name = body.name;
+    this.userName = body.userName;
+    this.status = body.status;
+    this.startsAt = body.startsAt;
     this.finishesAt = body.finishesAt;
     this.description = body.description;
   }
@@ -13,14 +15,26 @@ export class UpdateDto {
   @Length(24, 24)
   id: number;
 
-  @IsString()
-  @Length(1, 254)
-  userName?: string;
-
+  @IsOptional()
   @IsString()
   @Length(1, 254)
   name?: string;
 
+  @IsOptional()
+  @IsString()
+  @Length(1, 254)
+  userName?: string;
+
+  @IsOptional()
+  @IsString()
+  @Length(1, 254)
+  status?: string;
+
+  @IsDateString()
+  @IsOptional()
+  startsAt?: string;
+
+  @IsOptional()
   @IsDateString()
   finishesAt?: string;
 

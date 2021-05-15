@@ -24,12 +24,23 @@ export const taskLookup = (lookupDto: LookupDto) => {
 };
 
 export const createTask = (createDto: CreateDto) => {
-  const task: any = {
-    userName: createDto.userName,
-    name: createDto.name,
-    description: createDto.description,
-    finishesAt: createDto.finishesAt,
-  };
+  const task: any = {};
+
+  task.name = createDto.name;
+  task.userName = createDto.userName;
+  task.status = createDto.status;
+
+  if (isDefined(createDto.startsAt)) {
+    task.startsAt = createDto.startsAt;
+  }
+
+  if (isDefined(createDto.finishesAt)) {
+    task.finishesAt = createDto.finishesAt;
+  }
+
+  if (isDefined(createDto.description)) {
+    task.description = createDto.description;
+  }
 
   return taskModel.create(task);
 };
@@ -37,20 +48,28 @@ export const createTask = (createDto: CreateDto) => {
 export const updateTask = (updateDto: UpdateDto) => {
   const task: any = {};
 
-  if (isDefined(updateDto.userName)) {
-    task.userName = updateDto.userName;
-  }
-
   if (isDefined(updateDto.name)) {
     task.name = updateDto.name;
   }
 
-  if (isDefined(updateDto.description)) {
-    task.description = updateDto.description;
+  if (isDefined(updateDto.status)) {
+    task.status = updateDto.status;
+  }
+
+  if (isDefined(updateDto.userName)) {
+    task.userName = updateDto.userName;
+  }
+
+  if (isDefined(updateDto.startsAt)) {
+    task.startsAt = updateDto.startsAt;
   }
 
   if (isDefined(updateDto.finishesAt)) {
     task.finishesAt = updateDto.finishesAt;
+  }
+
+  if (isDefined(updateDto.description)) {
+    task.description = updateDto.description;
   }
 
   return taskModel.findOneAndUpdate({ _id: updateDto.id }, task, { new: true });

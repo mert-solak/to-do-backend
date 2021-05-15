@@ -2,11 +2,17 @@ import { IsOptional, IsString, Length, IsDateString } from 'class-validator';
 
 export class CreateDto {
   constructor(body: any) {
-    this.userName = body.userName;
     this.name = body.name;
+    this.userName = body.userName;
+    this.status = body.status;
+    this.startsAt = body.startsAt;
     this.finishesAt = body.finishesAt;
     this.description = body.description;
   }
+
+  @IsString()
+  @Length(1, 254)
+  name: string;
 
   @IsString()
   @Length(1, 254)
@@ -14,10 +20,15 @@ export class CreateDto {
 
   @IsString()
   @Length(1, 254)
-  name: string;
+  status: string;
 
   @IsDateString()
-  finishesAt: string;
+  @IsOptional()
+  startsAt?: string;
+
+  @IsDateString()
+  @IsOptional()
+  finishesAt?: string;
 
   @IsOptional()
   @IsString()

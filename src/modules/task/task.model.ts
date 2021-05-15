@@ -3,10 +3,12 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 export const schema = {
-  userName: { type: String, required: true },
   name: { type: String, required: true },
-  finishesAt: { type: Date, required: true },
-  description: { type: String },
+  userName: { type: String, required: true },
+  status: { type: String, required: true },
+  startsAt: { type: Date, default: null },
+  finishesAt: { type: Date, default: null },
+  description: { type: String, default: null },
 };
 
 const blogSchema = new Schema(schema, { timestamps: true });

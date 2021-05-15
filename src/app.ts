@@ -11,7 +11,7 @@ import taskRouter from './modules/task/task.router';
 import { CustomError } from './shared/utils';
 import { CustomErrorsEnum } from './shared/enums';
 
-mongoose.connect(`mongodb://${dbConfig.username}:${dbConfig.password}@localhost:27017`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://${dbConfig.username}:${dbConfig.password}@mongo:27017`, { useNewUrlParser: true });
 
 const app = express();
 
@@ -20,7 +20,7 @@ if (loggerConfig.isOpen) {
 }
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(urlConfig.tasks, taskRouter);
 
