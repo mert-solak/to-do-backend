@@ -13,10 +13,11 @@ export const taskLookup = (lookupDto: LookupDto) => {
     };
   }
 
-  console.log(query);
-
   if (isDefined(lookupDto.limit) && isDefined(lookupDto.offset)) {
-    return taskModel.find(query).skip(query.offset).limit(query.limit);
+    return taskModel
+      .find(query)
+      .skip(+lookupDto.offset)
+      .limit(+lookupDto.limit);
   }
 
   return taskModel.find(query).exec();

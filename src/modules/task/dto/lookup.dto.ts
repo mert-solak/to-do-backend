@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { IsOptional, IsString, Length } from 'class-validator';
 
 export class LookupDto {
   constructor(params: any) {
@@ -19,10 +19,12 @@ export class LookupDto {
   search?: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
+  @Length(1, 3)
   limit?: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
+  @Length(1, 3)
   offset?: string;
 }
