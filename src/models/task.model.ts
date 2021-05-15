@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const blogSchema = new Schema(
@@ -8,5 +8,5 @@ const blogSchema = new Schema(
     finishesAt: { type: Date, required: true },
     description: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
