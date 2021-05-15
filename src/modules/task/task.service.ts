@@ -53,7 +53,7 @@ export const updateTask = (updateDto: UpdateDto) => {
     task.finishesAt = updateDto.finishesAt;
   }
 
-  return taskModel.findOneAndUpdate({ _id: updateDto.id }, task);
+  return taskModel.findOneAndUpdate({ _id: updateDto.id }, task, { new: true });
 };
 
 export const deleteTask = (deleteDto: DeleteDto) => {

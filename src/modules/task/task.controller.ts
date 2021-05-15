@@ -1,6 +1,9 @@
+import { isDefined } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
 
 import { CreateDto, DeleteDto, LookupDto, UpdateDto } from './dto';
+import { CustomError } from '../../shared/utils';
+import { CustomErrorsEnum } from '../../shared/enums';
 import { taskLookup, createTask, updateTask, deleteTask } from './task.service';
 
 export const taskLookupController = async (
@@ -39,6 +42,10 @@ export const taskUpdateController = async (
   try {
     const task = await updateTask(req.body);
 
+    if (!isDefined(task)) {
+      throw new CustomError(CustomErrorsEnum.DATA_NOT_EXISTS);
+    }
+
     res.send(task);
   } catch (error) {
     next(error);
@@ -52,6 +59,10 @@ export const taskDeleteController = async (
 ): Promise<void> => {
   try {
     const task = await deleteTask(req.query);
+
+    if (!isDefined(task)) {
+      throw new CustomError(CustomErrorsEnum.DATA_NOT_EXISTS);
+    }
 
     res.send(task);
   } catch (error) {
