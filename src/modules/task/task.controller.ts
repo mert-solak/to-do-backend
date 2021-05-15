@@ -4,12 +4,12 @@ import { CreateDto, DeleteDto, LookupDto, UpdateDto } from './dto';
 import { taskLookup, createTask, updateTask, deleteTask } from './task.service';
 
 export const taskLookupController = async (
-  req: Request<LookupDto>,
+  req: Request<any, any, any, LookupDto>,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const lookupData = await taskLookup(req.params);
+    const lookupData = await taskLookup(req.query);
 
     res.send(lookupData);
   } catch (error) {
@@ -46,12 +46,12 @@ export const taskUpdateController = async (
 };
 
 export const taskDeleteController = async (
-  req: Request<DeleteDto>,
+  req: Request<any, any, any, DeleteDto>,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const task = await deleteTask(req.params);
+    const task = await deleteTask(req.query);
 
     res.send(task);
   } catch (error) {

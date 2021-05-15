@@ -7,22 +7,22 @@ export const validationMiddleware = async (req: Request, res: Response, next: Ne
   try {
     switch (req.method) {
       case 'GET':
-        const lookupDto = new LookupDto(req.params);
+        const lookupDto = new LookupDto(req.query);
         await handleErrors(lookupDto);
         break;
 
       case 'POST':
-        const createDto = new CreateDto(req.params);
+        const createDto = new CreateDto(req.body);
         await handleErrors(createDto);
         break;
 
       case 'PATCH':
-        const updateDto = new UpdateDto(req.params);
+        const updateDto = new UpdateDto(req.body);
         await handleErrors(updateDto);
         break;
 
       case 'DELETE':
-        const deleteDto = new DeleteDto(req.params);
+        const deleteDto = new DeleteDto(req.query);
         await handleErrors(deleteDto);
         break;
 
