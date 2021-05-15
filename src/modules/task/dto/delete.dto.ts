@@ -1,10 +1,11 @@
-import { IsUUID } from 'class-validator';
+import { IsString, Length } from 'class-validator';
 
 export class DeleteDto {
   constructor(params: any) {
     this.id = params.id;
   }
 
-  @IsUUID(4)
+  @IsString()
+  @Length(24, 24)
   id: string;
 }

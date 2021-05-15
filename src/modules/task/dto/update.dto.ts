@@ -1,4 +1,4 @@
-import { IsOptional, IsString, Length, IsDateString, IsUUID } from 'class-validator';
+import { IsOptional, IsString, Length, IsDateString } from 'class-validator';
 
 export class UpdateDto {
   constructor(body: any) {
@@ -9,7 +9,8 @@ export class UpdateDto {
     this.description = body.description;
   }
 
-  @IsUUID(4)
+  @IsString()
+  @Length(24, 24)
   id: number;
 
   @IsString()
