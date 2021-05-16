@@ -2,7 +2,7 @@ import { IsOptional, IsString, Length, IsDateString } from 'class-validator';
 
 export class UpdateDto {
   constructor(body: any) {
-    this.id = body.id;
+    this._id = body._id;
     this.name = body.name;
     this.userName = body.userName;
     this.status = body.status;
@@ -12,7 +12,7 @@ export class UpdateDto {
 
   @IsString()
   @Length(24, 24)
-  id: number;
+  _id: number;
 
   @IsOptional()
   @IsString()

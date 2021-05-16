@@ -64,9 +64,9 @@ export const updateTask = (updateDto: UpdateDto) => {
     task.description = updateDto.description;
   }
 
-  return taskModel.findOneAndUpdate({ _id: updateDto.id }, task, { new: true });
+  return taskModel.findOneAndUpdate({ _id: updateDto._id }, task, { new: true });
 };
 
 export const deleteTask = (deleteDto: DeleteDto) => {
-  return taskModel.findOneAndDelete({ _id: deleteDto.id });
+  return taskModel.findOneAndDelete({ _id: deleteDto._id });
 };
