@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import logger from 'morgan';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -11,9 +12,11 @@ import taskRouter from './modules/task/task.router';
 import { CustomError } from './shared/utils';
 import { CustomErrorsEnum } from './shared/enums';
 
-mongoose.connect(`mongodb://${dbConfig.username}:${dbConfig.password}@mongo:27017`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://${dbConfig.username}:${dbConfig.password}@localhost:27017`, { useNewUrlParser: true });
 
 const app = express();
+
+app.use(cors());
 
 if (loggerConfig.isOpen) {
   app.use(logger(loggerConfig.type));
