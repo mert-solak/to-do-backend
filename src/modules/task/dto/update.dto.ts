@@ -6,7 +6,6 @@ export class UpdateDto {
     this.name = body.name;
     this.userName = body.userName;
     this.status = body.status;
-    this.startsAt = body.startsAt;
     this.finishesAt = body.finishesAt;
     this.description = body.description;
   }
@@ -29,10 +28,6 @@ export class UpdateDto {
   @IsString()
   @Length(1, 254)
   status?: string;
-
-  @IsDateString()
-  @IsOptional()
-  startsAt?: string;
 
   @IsOptional()
   @IsDateString()

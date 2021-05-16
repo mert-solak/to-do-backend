@@ -5,7 +5,6 @@ export class CreateDto {
     this.name = body.name;
     this.userName = body.userName;
     this.status = body.status;
-    this.startsAt = body.startsAt;
     this.finishesAt = body.finishesAt;
     this.description = body.description;
   }
@@ -21,10 +20,6 @@ export class CreateDto {
   @IsString()
   @Length(1, 254)
   status: string;
-
-  @IsDateString()
-  @IsOptional()
-  startsAt?: string;
 
   @IsDateString()
   @IsOptional()

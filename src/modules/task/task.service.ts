@@ -30,10 +30,6 @@ export const createTask = (createDto: CreateDto) => {
   task.userName = createDto.userName;
   task.status = createDto.status;
 
-  if (isDefined(createDto.startsAt)) {
-    task.startsAt = createDto.startsAt;
-  }
-
   if (isDefined(createDto.finishesAt)) {
     task.finishesAt = createDto.finishesAt;
   }
@@ -58,10 +54,6 @@ export const updateTask = (updateDto: UpdateDto) => {
 
   if (isDefined(updateDto.userName)) {
     task.userName = updateDto.userName;
-  }
-
-  if (isDefined(updateDto.startsAt)) {
-    task.startsAt = updateDto.startsAt;
   }
 
   if (isDefined(updateDto.finishesAt)) {
